@@ -5,6 +5,7 @@ import './App.css';
 import Home from './Home';
 import About from './About';
 import Cats from './Cats';
+import Cat from './Cat';
 import PageNotFound from './PageNotFound';
 import Header from './Header';
 import {
@@ -18,22 +19,40 @@ function App() {
   return (
     <div className="App">
       <Header />
-
+      {/* Link is what you use
+          instead of an anchor!
+       */}
+      <Link to="/">Home</Link>
+      <br />
+      <Link to="/felines">Cats</Link>
+      {/* 
+        anchor tags only work locally, not on aws
+        (because it makes the browser send a new request)
+       */}
+      {/* <a href="/cats">cats, please</a> */}
+      <br />
+      <Link to="/about">About</Link>
+       <br />
+      <Link to="/knowhere">nowhere</Link>
+      <br />
+      <Link to="/asdfasdfsaf">nothing</Link>
+      
       <Switch>
         {/* 
           Switch shows the first matching Route
           or the last Route listed.
         */}
         {/* <Home /> */}
-
         {/*         
           Route conditionally renders
           a component based on the
-          path in the address bar.
+          path in the
+          address bar.
         */}
+
         <Route exact path="/" component={Home} />
         {/* <Cats /> */}
-        <Route path="/cats" component={Cats} />
+        <Route path="/felines" component={Cats} />
         {/* <About /> */}
         <Route path="/about" component={About} />
         
@@ -42,6 +61,7 @@ function App() {
         {/* <Route path="/*" component={PageNotFound} /> */}
         <Route component={PageNotFound} />
       </Switch>
+      <Route path="/felines/:cat" component={Cat} />
     </div>
   );
 }
